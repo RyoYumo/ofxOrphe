@@ -14,22 +14,22 @@
 
 namespace ofx {
 namespace orphe {
-template<typename InputIterator, typename OutputIterator>
-OutputIterator simpleMovingAverage(InputIterator first, InputIterator last, OutputIterator result){
-    using c_value_type = typename std::iterator_traits<InputIterator>::value_type;
-    auto sum = std::accumulate(first, last, c_value_type());
-    result = sum / std::distance(first, last);
-    return result;
-}
-
-template<typename InputIterator, typename OutputIterator>
-OutputIterator weightedMovingAverage(InputIterator first, InputIterator last, OutputIterator result){
-    using c_value_type = typename std::iterator_traits<InputIterator>::value_type;
-    using c_diff_type  = typename std::iterator_traits<InputIterator>::difference_type;
-    c_diff_type size   = std::distance(first, last);
-    
-    return result;
-}
+template<typename T>
+class SimpleMovingAverage {
+public:
+    SimpleMovingAverage(const int size) : data_(size), size_(size), sum_(){}
+    const T operator()(const T& input){
+        data_.push_back(input); data_.pop_front();
+        sum_ += data_.back();
+        sum_ -= data_.front();
+        return sum_ / size_;
+    }
+    const std::size_t size() const { return size_; }
+private:
+    std::deque<T> data_;
+    std::size_t   size_;
+    T sum_;
+};
 
 
 } // namespace orphe
