@@ -3,6 +3,7 @@
 
 #include "ofxOrphe/OrpheOne.hpp"
 #include "ofxOrphe/OrpheOscReceiver.hpp"
+#include "ofxOrphe/utility/MovingAverage.hpp"
 namespace ofxOrphe = ofx::orphe;
 
 

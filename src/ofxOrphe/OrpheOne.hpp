@@ -15,25 +15,32 @@ namespace ofx{
 namespace orphe{
 class OrpheOne {
 public:
-    const glm::quat& getOrientationQuat() const { return orientation_quat_; }
-    const glm::vec3& getOrientationEuler() const { return orientation_euler_; }
-    const glm::vec3& getAcceleration() const { return acceleration_; }
-    const glm::vec3& getGyro() const { return gyro_; }
-    ofEvent<void>&   getHeelEvent() { return heel_;}
-    ofEvent<void>&   getStepEvent() { return step_;}
-    void             setOrientationQuat(const glm::quat& quat) { orientation_quat_ = quat; }
-    void             setOrientationEuler(const glm::vec3& angle) { orientation_euler_ = angle; }
-    void             setAccelaration(const glm::vec3& acc) { acceleration_ = acc; }
-    void             setGyro(const glm::vec3& gyro) { gyro_ = gyro; }
-    void             heel() { ofNotifyEvent(heel_); }
-    void             step() { ofNotifyEvent(step_);}
+    const glm::quat& getOrientationQuat() const { return sensor_data_.orientation_quat; }
+    const glm::vec3& getOrientationEuler() const { return sensor_data_.orientation_euler; }
+    const glm::vec3& getAcceleration() const { return sensor_data_.accleration; }
+    const glm::vec3& getGyro() const { return sensor_data_.gyro; }
+    ofEvent<void>&   getHeelEvent() { return gesture_.heel;}
+    ofEvent<void>&   getStepEvent() { return gesture_.step;}
+    void             setOrientationQuat(const glm::quat& quat) { sensor_data_.orientation_quat = quat; }
+    void             setOrientationEuler(const glm::vec3& angle) { sensor_data_.orientation_euler = angle; }
+    void             setAccelaration(const glm::vec3& acc) { sensor_data_.accleration = acc; }
+    void             setGyro(const glm::vec3& gyro) { sensor_data_.gyro = gyro; }
+    void             heel() { ofNotifyEvent(gesture_.heel);}
+    void             step() { ofNotifyEvent(gesture_.step);}
 private:
-    glm::quat orientation_quat_;
-    glm::vec3 orientation_euler_;
-    glm::vec3 acceleration_;
-    glm::vec3 gyro_;
-    ofEvent<void> heel_;
-    ofEvent<void> step_;
+    struct SensorData {
+        glm::quat orientation_quat;
+        glm::vec3 orientation_euler;
+        glm::vec3 accleration;
+        glm::vec3 gyro;
+    };
+    
+    struct Gesture {
+        ofEvent<void> heel;
+        ofEvent<void> step;
+    };
+    SensorData  sensor_data_;
+    Gesture     gesture_;
 };
 } // namespace orphe
 } // namespace ofx
