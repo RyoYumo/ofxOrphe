@@ -14,20 +14,20 @@
 
 namespace ofx {
 namespace orphe {
-template<typename T>
+template<typename T, std::size_t N>
 class SimpleMovingAverage {
 public:
-    SimpleMovingAverage(const int size) : data_(size), size_(size), sum_(){}
+    using value_type = T;
+    static constexpr auto size = N;
+    SimpleMovingAverage() : data_(size),sum_(){}
     const T operator()(const T& input){
-        data_.push_back(input); data_.pop_front();
-        sum_ += data_.back();
+        sum_ += input;
         sum_ -= data_.front();
-        return sum_ / size_;
+        data_.push_back(input); data_.pop_front();
+        return sum_ / size;
     }
-    const std::size_t size() const { return size_; }
 private:
     std::deque<T> data_;
-    std::size_t   size_;
     T sum_;
 };
 

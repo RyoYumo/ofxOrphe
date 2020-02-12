@@ -8,6 +8,7 @@
 #define OFX_ORPHE_ORPHE_OSC_RECEIVER_HPP_
 
 #include "OrpheOne.hpp"
+#include "OrpheTrack.hpp"
 
 namespace ofx {
 namespace orphe {
@@ -15,12 +16,12 @@ namespace orphe {
 class OrpheOscReceiver {
 public:
     OrpheOscReceiver();
-    void left(OrpheOne* left);
-    void right(OrpheOne* right);
-    void subscribe(const int port=1234);
+    void left(OrpheTrack* left);
+    void right(OrpheTrack* right);
+    void subscribe(const int port=1111);
 private:
-    OrpheOne* left_;
-    OrpheOne* right_;
+    OrpheTrack* left_;
+    OrpheTrack* right_;
 };
 
 } // namespace orphe
