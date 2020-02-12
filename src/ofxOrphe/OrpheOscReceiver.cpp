@@ -10,19 +10,19 @@
 namespace ofx{
 namespace orphe{
 
-OrpheOscReceiver::OrpheOscReceiver() : left_(nullptr), right_(nullptr){
+OrpheTrackOscReceiver::OrpheTrackOscReceiver() : left_(nullptr), right_(nullptr){
     
 }
 
-void OrpheOscReceiver::left(OrpheTrack* left){
+void OrpheTrackOscReceiver::left(OrpheTrack* left){
     left_ = left;
 }
 
-void OrpheOscReceiver::right(OrpheTrack* right){
+void OrpheTrackOscReceiver::right(OrpheTrack* right){
     right_ = right;
 }
 
-void OrpheOscReceiver::subscribe(const int port){
+void OrpheTrackOscReceiver::subscribe(const int port){
     
     ofxSubscribeOsc(port, "/LEFT/gaitAnalysis/motion", [&](ofxOscMessage& m){
         if(!left_) return;
