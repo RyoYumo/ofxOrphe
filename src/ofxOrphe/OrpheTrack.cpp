@@ -10,37 +10,37 @@ namespace ofx{
 namespace orphe{
 void OrpheTrack::setVelocity(const glm::vec3 &velocity){
     gait_.velocity = velocity;
-    velocity_sig_.notify(gait_.velocity);
+    velocity_sig_.emit(gait_.velocity);
 }
 
 void OrpheTrack::setOrientation(const glm::quat& quat) {
     gait_.orientation = quat;
-    orientation_sig_.notify(gait_.orientation);
+    orientation_sig_.emit(gait_.orientation);
 }
 
 void OrpheTrack::setDisplacement(const glm::vec3& displacement){
     gait_.displacement = displacement;
-    displacement_sig_.notify(gait_.displacement);
+    displacement_sig_.emit(gait_.displacement);
 }
 
 void OrpheTrack::setDeltaDisplacement(const glm::vec3& delta_displacement){
     gait_.delta_displacement = delta_displacement;
-    delta_displacement_sig_.notify(gait_.delta_displacement);
+    delta_displacement_sig_.emit(gait_.delta_displacement);
 }
 
 void OrpheTrack::setSpeed(float speed){
     gait_.speed = speed;
-    speed_sig_.notify(gait_.speed);
+    speed_sig_.emit(gait_.speed);
 }
 
 void OrpheTrack::setSwingDuration(float duration){
     gait_.swing_duration = duration;
-    swing_duration_sig_.notify(gait_.swing_duration);
+    swing_duration_sig_.emit(gait_.swing_duration);
 }
 
 void OrpheTrack::setStanceDuration(float duration){
     gait_.stance_duration = duration;
-    stance_duration_sig_.notify(gait_.stance_duration);
+    stance_duration_sig_.emit(gait_.stance_duration);
 }
 
 void OrpheTrack::setState(int state){
@@ -50,11 +50,11 @@ void OrpheTrack::setState(int state){
     bool is_change = (previous != current) ? true : false;
     if(is_change){
         if(current == EnumType::kStop){
-            stop_sig_.notify();
+            stop_sig_.emit();
         }else if(current == EnumType::kWalk){
-            walk_sig_.notify();
+            walk_sig_.emit();
         }else if(current == EnumType::kRun){
-            run_sig_.notify();
+            run_sig_.emit();
         }
     }
 }
@@ -66,11 +66,11 @@ void OrpheTrack::setCyclePeriod(int period){
     bool is_change = (previous != current) ? true : false;
     if(is_change){
         if(current == EnumType::kNone){
-            cycle_period_none_sig_.notify();
+            cycle_period_none_sig_.emit();
         }else if(current == EnumType::kStance){
-            cycle_period_stance_sig_.notify();
+            cycle_period_stance_sig_.emit();
         }else if(current == EnumType::kSwing){
-            cycle_period_swing_sig_.notify();
+            cycle_period_swing_sig_.emit();
         }
     }
     
@@ -86,19 +86,19 @@ void OrpheTrack::setDetailedCyclePeriod(int period){
     bool is_change = (previous != current) ? true : false;
     if(is_change){
         if(current == EnumType::kNone){
-            detailed_cycle_period_none_sig_.notify();
+            detailed_cycle_period_none_sig_.emit();
         }else if (current == EnumType::kLoadingResponse){
-            detailed_cycle_period_loading_response_sig_.notify();
+            detailed_cycle_period_loading_response_sig_.emit();
         }else if (current == EnumType::kMidStance){
-            detailed_cycle_period_mid_stance_sig_.notify();
+            detailed_cycle_period_mid_stance_sig_.emit();
         }else if (current == EnumType::kTerminalStance){
-            detailed_cycle_period_termianl_stance_sig_.notify();
+            detailed_cycle_period_termianl_stance_sig_.emit();
         }else if (current == EnumType::kIntialSwing){
-            detailed_cycle_period_initial_swing_sig_.notify();
+            detailed_cycle_period_initial_swing_sig_.emit();
         }else if (current == EnumType::kMidSwing){
-            detailed_cycle_period_mid_swing_sig_.notify();
+            detailed_cycle_period_mid_swing_sig_.emit();
         }else if (current == EnumType::kTerminalSwing){
-            detailed_cycle_period_terminal_swing_sig_.notify();
+            detailed_cycle_period_terminal_swing_sig_.emit();
         }
     }
     
@@ -113,19 +113,19 @@ void OrpheTrack::setCycleEvent(int event){
     bool is_change = (previous != current) ? true : false;
     if(is_change){
         if(current == EnumType::kNone){
-            cycle_event_none_sig_.notify();
+            cycle_event_none_sig_.emit();
         }else if (current == EnumType::kInitial){
-            cycle_event_initial_sig_.notify();
+            cycle_event_initial_sig_.emit();
         }else if (current == EnumType::kFootFlat){
-            cycle_event_foot_flat_sig_.notify();
+            cycle_event_foot_flat_sig_.emit();
         }else if (current == EnumType::kHeelRise){
-            cycle_event_heel_rise_sig_.notify();
+            cycle_event_heel_rise_sig_.emit();
         }else if (current == EnumType::kToeOff){
-            cycle_event_toe_off_sig_.notify();
+            cycle_event_toe_off_sig_.emit();
         }else if (current == EnumType::kFeetAdjacent){
-            cycle_event_feet_adjacent_sig_.notify();
+            cycle_event_feet_adjacent_sig_.emit();
         }else if (current == EnumType::kTibiaVertical){
-            cycle_event_tibia_vertical_sig_.notify();
+            cycle_event_tibia_vertical_sig_.emit();
         }
     }
     

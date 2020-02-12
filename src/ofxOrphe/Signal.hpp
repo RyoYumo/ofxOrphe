@@ -13,22 +13,15 @@
 template<typename T>
 class Signal {
 public:
-    Signal(){
-        ofAddListener(event_, this, &Signal::callback);
-    }
-    ~Signal(){
-        ofRemoveListener(event_, this, &Signal::callback);
-    }
+    Signal() { ofAddListener(event_, this, &Signal::callback);}
+    ~Signal(){ ofRemoveListener(event_, this, &Signal::callback);}
+    
     template<typename Callback>
     void connect(Callback&& callback){
         callback_obj_ = std::forward<Callback>(callback);
     }
     
-    void notify(T& arg){
-        ofNotifyEvent(event_, arg);
-    }
-    
-    
+    void emit(T& arg){ ofNotifyEvent(event_, arg);}
 private:
     ofEvent<T> event_;
     std::function<void(T&)> callback_obj_;
@@ -42,21 +35,15 @@ private:
 template<>
 class Signal<void> {
 public:
-    Signal(){
-        ofAddListener(event_, this, &Signal::callback);
-    }
-    ~Signal(){
-        ofRemoveListener(event_, this, &Signal::callback);
-    }
+    Signal() { ofAddListener(event_, this, &Signal::callback);}
+    ~Signal(){ ofRemoveListener(event_, this, &Signal::callback);}
     
     template<typename Callback>
     void connect(Callback&& callback){
         callback_obj_ = std::forward<Callback>(callback);
     }
     
-    void notify(){
-        ofNotifyEvent(event_);
-    }
+    void emit(){ ofNotifyEvent(event_);}
     
 private:
     ofEvent<void> event_;
