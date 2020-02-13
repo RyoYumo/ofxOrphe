@@ -37,16 +37,39 @@ void OrpheTrackOscReceiver::subscribe(const int port){
     });
     
     ofxSubscribeOsc(port, "/LEFT/gaitAnalysis/swingDuration", [&](ofxOscMessage& m){
+        if(!left_) return;
         left_->setSwingDuration(m.getArgAsFloat(1));
     });
     
     ofxSubscribeOsc(port, "/LEFT/gaitAnalysis/stanceDuration", [&](ofxOscMessage& m){
+        if(!left_) return;
         left_->setStanceDuration(m.getArgAsFloat(1));
     });
     
     ofxSubscribeOsc(port, "/LEFT/gaitAnalysis/speed", [&](ofxOscMessage& m){
+        if(!left_) return;
         left_->setSpeed(m.getArgAsFloat(1) * 3.6);
     });
+    
+    ofxSubscribeOsc(port, "/LEFT/gaitAnalysis/stride", [&](ofxOscMessage& m){
+        if(!left_) return;
+        left_->setStrideDistance(m.getArgAsFloat(1));
+    });
+    
+    ofxSubscribeOsc(port, "/LEFT/gaitAnalysis/pronation", [&](ofxOscMessage& m){
+        if(!left_) return;
+        left_->setPronation(m.getArgAsFloat(1));
+    });
+    
+    // sensor values
+    ofxSubscribeOsc(port, "/LEFT/sensorValues", [&](ofxOscMessage& m){
+        if(!left_) return;
+        left_->setOrientation(glm::vec3(m.getArgAsFloat(4), m.getArgAsFloat(5), m.getArgAsFloat(6)));
+        left_->setAcceleration(glm::vec3(m.getArgAsFloat(7), m.getArgAsFloat(8), m.getArgAsFloat(9)));
+        left_->setGyro(glm::vec3(m.getArgAsFloat(10), m.getArgAsFloat(11), m.getArgAsFloat(12)));
+        left_->setMagnitude(m.getArgAsFloat(13));
+    });
+    
     
     ofxSubscribeOsc(port, "/RIGHT/gaitAnalysis/motion", [&](ofxOscMessage& m){
         if(!right_) return;
@@ -61,18 +84,38 @@ void OrpheTrackOscReceiver::subscribe(const int port){
     });
     
     ofxSubscribeOsc(port, "/RIGHT/gaitAnalysis/swingDuration", [&](ofxOscMessage& m){
+        if(!right_) return;
         right_->setSwingDuration(m.getArgAsFloat(1));
     });
        
     ofxSubscribeOsc(port, "/RIGHT/gaitAnalysis/stanceDuration", [&](ofxOscMessage& m){
+        if(!right_) return;
         right_->setStanceDuration(m.getArgAsFloat(1));
     });
     
     ofxSubscribeOsc(port, "/RIGHT/gaitAnalysis/speed", [&](ofxOscMessage& m){
+        if(!right_) return;
         right_->setSpeed(m.getArgAsFloat(1) * 3.6);
     });
 
+    ofxSubscribeOsc(port, "/RIGHT/gaitAnalysis/stride", [&](ofxOscMessage& m){
+        if(!right_) return;
+        right_->setStrideDistance(m.getArgAsFloat(1));
+    });
     
+    ofxSubscribeOsc(port, "/RIGHT/gaitAnalysis/pronation", [&](ofxOscMessage& m){
+        if(!right_) return;
+        right_->setPronation(m.getArgAsFloat(1));
+    });
+    
+    // sensor values
+    ofxSubscribeOsc(port, "/RIGHT/sensorValues", [&](ofxOscMessage& m){
+        if(!right_) return;
+        left_->setOrientation(glm::vec3(m.getArgAsFloat(4), m.getArgAsFloat(5), m.getArgAsFloat(6)));
+        left_->setAcceleration(glm::vec3(m.getArgAsFloat(7), m.getArgAsFloat(8), m.getArgAsFloat(9)));
+        left_->setGyro(glm::vec3(m.getArgAsFloat(10), m.getArgAsFloat(11), m.getArgAsFloat(12)));
+        left_->setMagnitude(m.getArgAsFloat(13));
+    });
 }
 
 } // namespace orphe

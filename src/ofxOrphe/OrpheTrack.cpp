@@ -15,7 +15,7 @@ void OrpheTrack::setVelocity(const glm::vec3 &velocity){
 
 void OrpheTrack::setOrientation(const glm::quat& quat) {
     gait_.orientation = quat;
-    orientation_sig_.emit(gait_.orientation);
+    orientation_quat_sig_.emit(gait_.orientation);
 }
 
 void OrpheTrack::setDisplacement(const glm::vec3& displacement){
@@ -51,6 +51,27 @@ void OrpheTrack::setSwingDuration(float duration){
 void OrpheTrack::setStanceDuration(float duration){
     gait_.stance_duration = duration;
     stance_duration_sig_.emit(gait_.stance_duration);
+}
+
+
+void OrpheTrack::setOrientation(const glm::vec3& euler){
+    sensor_.orientation = euler;
+    orientation_euler_sig_.emit(sensor_.orientation);
+}
+
+void OrpheTrack::setAcceleration(const glm::vec3& acc){
+    sensor_.acceleration = acc;
+    acceleration_sig_.emit(sensor_.acceleration);
+}
+
+void OrpheTrack::setGyro(const glm::vec3 &gyro){
+    sensor_.gyro = gyro;
+    gyro_sig_.emit(sensor_.gyro);
+}
+
+void OrpheTrack::setMagnitude(float mag){
+    sensor_.magnitude = mag;
+    magnitude_sig_.emit(sensor_.magnitude);
 }
 
 void OrpheTrack::setState(int state){

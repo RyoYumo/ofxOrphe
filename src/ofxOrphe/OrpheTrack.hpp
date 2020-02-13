@@ -26,6 +26,8 @@ toUType(E enumerator){
 
 class OrpheTrack {
 public:
+    //! Gait Analysis
+    //! setter
     void setVelocity(const glm::vec3& velocity);
     void setOrientation(const glm::quat& quat);
     void setDisplacement(const glm::vec3& displacement);
@@ -40,7 +42,8 @@ public:
     void setDetailedCyclePeriod(int period);
     void setCycleEvent(int event);
     
-    const glm::quat&   getOrientation() const { return gait_.orientation; }
+    //! getter
+    const glm::quat&   getOrientationQuat() const { return gait_.orientation; }
     const glm::vec3&   getVelocity() const { return gait_.velocity; }
     const glm::vec3&   getDisplacement() const { return gait_.displacement;}
     const glm::vec3&   getDeltaDisplacement() const { return gait_.delta_displacement; }
@@ -53,13 +56,14 @@ public:
     const int          getCyclePeriod() const { return detail::toUType(gait_.cycle_period);}
     const int          getDetailedCyclePeriod() const { return detail::toUType(gait_.detailed_cycle_period); }
     const int          getCycleEvent() const { return detail::toUType(gait_.cycle_event); }
-
+    
+    //! signal getter (event)
     Signal<glm::vec3>& getVelocitySignal() { return velocity_sig_; }
-    Signal<glm::quat>& getOrientationSignal() { return orientation_sig_; }
+    Signal<glm::quat>& getOrientationQuatSignal() { return orientation_quat_sig_; }
     Signal<glm::vec3>& getDisplacementSignal() { return displacement_sig_; }
     Signal<float>&     getSpeedSignal() { return speed_sig_; }
-    Signal<float>&     getPronation() { return pronation_sig_; }
-    Signal<float>&     getStrideDistance() { return stride_distance_sig_; }
+    Signal<float>&     getPronationSignal() { return pronation_sig_; }
+    Signal<float>&     getStrideDistanceSignal() { return stride_distance_sig_; }
     Signal<float>&     getStanceDurationSignal() { return stance_duration_sig_; }
     Signal<float>&     getSwingDurationSignal() { return swing_duration_sig_;}
     Signal<void>&      getStopSignal() { return stop_sig_; }
@@ -83,6 +87,25 @@ public:
     Signal<void>&      getCycleEventFeetAdjacentSignal() { return cycle_event_feet_adjacent_sig_;}
     Signal<void>&      getCycleEventTibiaVerticalSignal() { return cycle_event_tibia_vertical_sig_;}
     
+    
+    //! Sensor
+    //! setter
+    void setOrientation(const glm::vec3& euler);
+    void setAcceleration(const glm::vec3& acc);
+    void setGyro(const glm::vec3& gyro);
+    void setMagnitude(float mag);
+    
+    //! getter
+    const glm::vec3& getOrientationEuler() const { return sensor_.orientation; }
+    const glm::vec3& getAcceleration() const { return sensor_.acceleration; }
+    const glm::vec3& getGyro() const { return sensor_.gyro; }
+    const float      getMagnitude() const { return sensor_.magnitude; }
+    
+    Signal<glm::vec3>& getOrientationEulerSignal() { return orientation_euler_sig_; }
+    Signal<glm::vec3>& getAccelerationSignal() { return acceleration_sig_;}
+    Signal<glm::vec3>& getGyroSignal() { return gyro_sig_; }
+    Signal<float>&     getMagnitudeSignal() { return magnitude_sig_; }
+    
 private:
     struct GaitAnalysisData {
         enum class State { kStop, kWalk, kRun };
@@ -104,8 +127,16 @@ private:
         CycleEvent cycle_event;
     };
     
+    struct SensorData {
+        glm::vec3     orientation;
+        glm::vec3     acceleration;
+        glm::vec3     gyro;
+        float         magnitude;
+    };
+    
     GaitAnalysisData  gait_;
-    Signal<glm::quat> orientation_sig_;
+    SensorData        sensor_;
+    Signal<glm::quat> orientation_quat_sig_;
     Signal<glm::vec3> velocity_sig_;
     Signal<glm::vec3> displacement_sig_;
     Signal<glm::vec3> delta_displacement_sig_;
@@ -142,6 +173,13 @@ private:
     Signal<void>      cycle_event_toe_off_sig_;
     Signal<void>      cycle_event_feet_adjacent_sig_;
     Signal<void>      cycle_event_tibia_vertical_sig_;
+    
+    // sensor
+    Signal<glm::vec3> orientation_euler_sig_;
+    Signal<glm::vec3> acceleration_sig_;
+    Signal<glm::vec3> gyro_sig_;
+    Signal<float>     magnitude_sig_;
+
 };
 
 } // namespace orphe

@@ -13,6 +13,19 @@
 namespace ofx {
 namespace orphe {
 //! osc interface
+
+class OrpheOneOscReceiver {
+public:
+    OrpheOneOscReceiver();
+    void left(OrpheOne* left);
+    void right(OrpheOne* right);
+    void subscribe(const int port=1234);
+private:
+    OrpheOne* left_;
+    OrpheOne* right_;
+};
+
+
 class OrpheTrackOscReceiver {
 public:
     OrpheTrackOscReceiver();
