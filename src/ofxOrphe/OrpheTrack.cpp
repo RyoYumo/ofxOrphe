@@ -33,6 +33,16 @@ void OrpheTrack::setSpeed(float speed){
     speed_sig_.emit(gait_.speed);
 }
 
+void OrpheTrack::setPronation(float deg){
+    gait_.pronation = deg;
+    pronation_sig_.emit(gait_.pronation);
+}
+
+void OrpheTrack::setStrideDistance(float dist){
+    gait_.stride_distance = dist;
+    stride_distance_sig_.emit(gait_.stride_distance);
+}
+
 void OrpheTrack::setSwingDuration(float duration){
     gait_.swing_duration = duration;
     swing_duration_sig_.emit(gait_.swing_duration);
