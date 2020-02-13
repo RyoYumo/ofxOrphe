@@ -88,6 +88,7 @@ void OrpheTrack::setState(int state){
             run_sig_.emit();
         }
     }
+    gait_.state = current;
 }
 
 void OrpheTrack::setCyclePeriod(int period){
