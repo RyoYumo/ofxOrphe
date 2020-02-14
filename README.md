@@ -1,1 +1,5 @@
 # ofxOrphe
+
+## Dependency
+- ofxOsc
+- ofxPubSubOsc
