@@ -111,10 +111,10 @@ void OrpheTrackOscReceiver::subscribe(const int port){
     // sensor values
     ofxSubscribeOsc(port, "/RIGHT/sensorValues", [&](ofxOscMessage& m){
         if(!right_) return;
-        left_->setOrientation(glm::vec3(m.getArgAsFloat(4), m.getArgAsFloat(5), m.getArgAsFloat(6)));
-        left_->setAcceleration(glm::vec3(m.getArgAsFloat(7), m.getArgAsFloat(8), m.getArgAsFloat(9)));
-        left_->setGyro(glm::vec3(m.getArgAsFloat(10), m.getArgAsFloat(11), m.getArgAsFloat(12)));
-        left_->setMagnitude(m.getArgAsFloat(13));
+        right_->setOrientation(glm::vec3(m.getArgAsFloat(4), m.getArgAsFloat(5), m.getArgAsFloat(6)));
+        right_->setAcceleration(glm::vec3(m.getArgAsFloat(7), m.getArgAsFloat(8), m.getArgAsFloat(9)));
+        right_->setGyro(glm::vec3(m.getArgAsFloat(10), m.getArgAsFloat(11), m.getArgAsFloat(12)));
+        right_->setMagnitude(m.getArgAsFloat(13));
     });
 }
 
