@@ -70,8 +70,8 @@ public:
     Signal<void>&      getWalkSignal() { return walk_sig_; }
     Signal<void>&      getRunSignal() { return  run_sig_; }
     Signal<void>&      getCyclePeriodNoneSignal() { return cycle_period_none_sig_; }
-    Signal<void>&      getCyclePeriodStanceSignal() { return cycle_period_none_sig_; }
-    Signal<void>&      getCyclePeriodSwingSignal() { return cycle_period_none_sig_; }
+    Signal<void>&      getCyclePeriodStanceSignal() { return cycle_period_stance_sig_; }
+    Signal<void>&      getCyclePeriodSwingSignal() { return cycle_period_swing_sig_; }
     Signal<void>&      getDetailedCyclePeriodNoneSignal() { return detailed_cycle_period_none_sig_; }
     Signal<void>&      getDetailedCyclePeriodLoadingResponseSignal() { return detailed_cycle_period_loading_response_sig_; }
     Signal<void>&      getDetailedCyclePeriodMidStanceSignal() { return detailed_cycle_period_mid_stance_sig_; }
