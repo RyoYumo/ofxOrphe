@@ -39,7 +39,7 @@ public:
         ofBeginShape();
         for(auto i = 0; i < history_.size(); ++i){
             if(i == 0) ofVertex(0, 0);
-            auto x = i * ((float)area_.width / history_.size());
+            auto x = i * ((float)area_.width / (history_.size()-1));
             auto y = history_[i] == 1 ? area_.height * -0.8 : 0.0;
             ofVertex(x,y);
             if(i == history_.size() -1) ofVertex(area_.width, 0);
@@ -104,7 +104,7 @@ public:
         ofBeginShape();
         for(auto i = 0; i < history_.size(); ++i){
             if(i == 0) ofVertex(0, 0);
-            auto x = i * ((float)area_.width / history_.size());
+            auto x = i * ((float)area_.width / (history_.size()-1));
             auto y = -1 * ofMap(ofClamp(history_[i],
                                 input_value_range_.first,
                                 input_value_range_.second),
