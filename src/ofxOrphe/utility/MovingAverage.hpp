@@ -14,6 +14,14 @@
 
 namespace ofx {
 namespace orphe {
+namespace detail{
+constexpr int32_t ceil(float num)
+{
+    return (static_cast<float>(static_cast<int32_t>(num)) == num)
+        ? static_cast<int32_t>(num)
+        : static_cast<int32_t>(num) + ((num > 0) ? 1 : 0);
+}
+} // namespace detail
 
 template<typename T, std::size_t N>
 class SimpleMovingAverage {
@@ -140,16 +148,16 @@ class TriangularMovingAverage {
 public:
     using value_type = T;
     static constexpr auto size = N;
-    TriangularMovingAverage() : w_(), sma_(), out_(){
-        w_ = glm::ceil((size+1)/2);
+    static constexpr auto w = detail::ceil(size+1)/2;
+    TriangularMovingAverage() : sma_(), out_(){
+        
     }
     const T getOutput(const T& input){
         return out_.getOutput(sma_.getOutput(input));
     }
 private:
-    std::size_t w_;
-    SimpleMovingAverage<float, w_> sma_;
-    SimpleMovingAverage<float, w_> out_;
+    SimpleMovingAverage<float, w> sma_;
+    SimpleMovingAverage<float, w> out_;
 };
 
 
