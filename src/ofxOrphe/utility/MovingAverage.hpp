@@ -61,6 +61,39 @@ private:
     int denominator_;
 };
 
+template<typename T, std::size_t N>
+class ExponentialMovingAverage {
+public:
+    using value_type = T;
+    static constexpr auto size = N;
+    ExponentialMovingAverage() : data_(size), weight_(), sum_(), alpha_(), denominator_(){
+        alpha_ = 2/ (size + 1);
+        weight_.push_back(1);
+        for(auto i = 1; i <= size; ++i){
+            weight_.push_back(std::pow(1-alpha_, i));
+            denominator_ += std::pow(1-alpha_, i);
+        }
+        denominator_ = denominator_ + 1;
+    }
+    const T getOutput(const T& input){
+        data_.push_back(input);
+        data_.pop_front();
+        sum_ = 0;
+        
+        for(auto i = 0; i < size; ++i){
+            sum_ += weight_.at(i) * data_.at(i);
+        }
+        
+        return sum_ / denominator_;
+    }
+private:
+    std::deque<T> data_;
+    std::vector<T> weight_;
+    T sum_;
+    float alpha_;
+    float denominator_;
+};
+
 } // namespace orphe
 } // namespace ofx
 
