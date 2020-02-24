@@ -113,7 +113,7 @@ public:
         data_.pop_front();
         sum_ = T{};
         
-        for(auto i = 0; i < size; ++i){
+        for(auto i = 0; i <= size; ++i){
             sum_ += weight_.at(i) * data_.at(i);
         }
         
