@@ -996,6 +996,21 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
+			<key>B5000A0991D9527E337A369D</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>TriggerGraph.hpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxOrphe/src/ofxOrphe/utility/TriggerGraph.hpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>88B926031716D44D2BB09CD8</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -1015,8 +1030,9 @@
 			<dict>
 				<key>children</key>
 				<array>
-					<string>78D6E5D59C325B10CBE29ECE</string>
+					<string>0926452E1ED473D0F398825D</string>
 					<string>88B926031716D44D2BB09CD8</string>
+					<string>B5000A0991D9527E337A369D</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
@@ -1025,25 +1041,18 @@
 				<key>sourceTree</key>
 				<string>&lt;group&gt;</string>
 			</dict>
-			<key>A553F93163A6054460812FC8</key>
-			<dict>
-				<key>fileRef</key>
-				<string>78D6E5D59C325B10CBE29ECE</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>78D6E5D59C325B10CBE29ECE</key>
+			<key>0926452E1ED473D0F398825D</key>
 			<dict>
 				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
+				<string>sourcecode.c.h</string>
 				<key>fileEncoding</key>
 				<string>4</string>
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>MovingAverage.cpp</string>
+				<string>HistoryGraph.hpp</string>
 				<key>path</key>
-				<string>../../../addons/ofxOrphe/src/ofxOrphe/utility/MovingAverage.cpp</string>
+				<string>../../../addons/ofxOrphe/src/ofxOrphe/utility/HistoryGraph.hpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
@@ -1405,6 +1414,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>src</string>
 						<string>../../../addons/ofxOrphe/src</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe/utility</string>
@@ -1461,6 +1471,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxOrphe/src</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe</string>
@@ -4280,6 +4291,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>src</string>
 						<string>../../../addons/ofxOrphe/src</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe/utility</string>
@@ -4357,6 +4369,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>src</string>
 						<string>../../../addons/ofxOrphe/src</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe/utility</string>
@@ -4401,7 +4414,6 @@ fi
 					<string>6A22349340302FD0F292D480</string>
 					<string>66E9E8FE141CEF9290738D8B</string>
 					<string>6D07B57E74E260BFFC759436</string>
-					<string>A553F93163A6054460812FC8</string>
 					<string>ADE367465D2A8EBAD4C7A8D9</string>
 					<string>67FE4C7B15C2F0478C8126C2</string>
 					<string>510CAFE035E576A4E1502D52</string>
@@ -4513,6 +4525,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>src</string>
 						<string>../../../addons/ofxOrphe/src</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe/utility</string>
@@ -4578,6 +4591,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxOrphe/src</string>
 						<string>../../../addons/ofxOrphe/src/ofxOrphe</string>

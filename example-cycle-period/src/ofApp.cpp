@@ -3,9 +3,8 @@
 namespace {
 constexpr auto kReceivePort = 1111;
 constexpr auto kSendPort    = 8888;
-
-
 }
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0,0,0);
@@ -15,50 +14,49 @@ void ofApp::setup(){
     receiver.subscribe(kReceivePort);
     
     
-    left_swing_history.setArea(ofRectangle(0, 0, 600, 300));
-    left_stance_history.setArea(ofRectangle(0, 0, 600, 300));
-    right_swing_history.setArea(ofRectangle(0, 300, 600, 300));
-    right_stance_history.setArea(ofRectangle(0, 300, 600, 300));
+    l_swing_history.setDrawingArea(ofRectangle(0, 0, 600, 300));
+    l_stance_history.setDrawingArea(ofRectangle(0, 0, 600, 300));
+    r_swing_history.setDrawingArea(ofRectangle(0, 300, 600, 300));
+    r_stance_history.setDrawingArea(ofRectangle(0, 300, 600, 300));
+    l_swing_history.setColor(ofColor(110, 146, 161));
+    l_stance_history.setColor(ofColor(39, 86, 107));
+    r_swing_history.setColor(ofColor(170, 121, 57));
+    r_stance_history.setColor(ofColor(255, 219, 170));
     
-    left_swing_history.setColor(ofColor(110, 146, 161));
-    left_stance_history.setColor(ofColor(39, 86, 107));
-    right_swing_history.setColor(ofColor(170, 121, 57));
-    right_stance_history.setColor(ofColor(255, 219, 170));
     
-    
-    swing_duration_diff_hisotry.setArea(ofRectangle(600, 0, 600, 300));
+    swing_duration_diff_hisotry.setDrawingArea(ofRectangle(600, 0, 600, 300));
     swing_duration_diff_hisotry.setInputValueRange(-0.5, 0.5);
     
-    stance_duration_diff_hisotry.setArea(ofRectangle(600, 300, 600, 300));
+    stance_duration_diff_hisotry.setDrawingArea(ofRectangle(600, 300, 600, 300));
     stance_duration_diff_hisotry.setInputValueRange(-0.5, 0.5);
     
     left.getCyclePeriodSwingSignal().connect([&](){
         ofxSendOsc("127.0.0.1", kSendPort, "/left/swing");
-        left_swing_history.trigger();
+        l_swing_history.trigger();
     });
     
     left.getCyclePeriodStanceSignal().connect([&](){
         ofxSendOsc("127.0.0.1", kSendPort, "/left/stance");
-        left_stance_history.trigger();
+        l_stance_history.trigger();
     });
     
     right.getCyclePeriodSwingSignal().connect([&](){
         ofxSendOsc("127.0.0.1", kSendPort, "/right/swing");
-        right_swing_history.trigger();
+        r_swing_history.trigger();
     });
     
     right.getCyclePeriodStanceSignal().connect([&](){
         ofxSendOsc("127.0.0.1", kSendPort, "/right/stance");
-        right_stance_history.trigger();
+        r_stance_history.trigger();
     });
     
     
     right.getSwingDurationSignal().connect([&](float& val){
-        swing_duration_diff_hisotry.value(left.getSwingDuration() - val);
+        swing_duration_diff_hisotry.addValue(left.getSwingDuration() - val);
     });
     
     right.getStanceDurationSignal().connect([&](float& val){
-        stance_duration_diff_hisotry.value(left.getStanceDuration() - val);
+        stance_duration_diff_hisotry.addValue(left.getStanceDuration() - val);
     });
     
     ofSetWindowTitle("example-cycle-period");
@@ -81,10 +79,10 @@ void ofApp::draw(){
     ofDrawBitmapString("Stance duration difference", 620, 320);
     ofDrawBitmapString("LEFT - RIGHT = " + ofToString(stance_duration_diff_hisotry.getValue()), 620, 340);
     
-    left_swing_history.draw();
-    left_stance_history.draw();
-    right_swing_history.draw();
-    right_stance_history.draw();
+    l_swing_history.draw();
+    l_stance_history.draw();
+    r_swing_history.draw();
+    r_stance_history.draw();
     swing_duration_diff_hisotry.draw();
     stance_duration_diff_hisotry.draw();
 }
