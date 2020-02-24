@@ -21,7 +21,7 @@ public:
     using value_type = T;
     static constexpr auto size = N;
     SimpleMovingAverage() : data_(size),sum_(){}
-    const T operator()(const T& input){
+    const T getOutput(const T& input){
         sum_ += input;
         sum_ -= data_.front();
         data_.push_back(input); data_.pop_front();
@@ -43,7 +43,7 @@ public:
             denominator_ += (size - i);
         }
     }
-    const T operator()(const T& input){
+    const T getOutput(const T& input){
         data_.push_back(input);
         data_.pop_front();
         sum_ = 0;
