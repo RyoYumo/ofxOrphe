@@ -5,6 +5,8 @@
 #include "ofxOrphe/OrpheOscReceiver.hpp"
 #include "ofxOrphe/OrpheTrack.hpp"
 #include "ofxOrphe/utility/MovingAverage.hpp"
+#include "ofxOrphe/utility/HistoryGraph.hpp"
+
 
 namespace ofxOrphe = ofx::orphe;
 
