@@ -14,7 +14,6 @@ void ofApp::setup(){
     receiver.subscribe(kReceivePort);
     
     // left
-
     l_euler_x_history.setDrawingArea(ofRectangle(0, 0, 400, 200));
     l_euler_x_history.setInputValueRange(-90, 90);
     l_euler_x_history.setColor(ofColor(226, 100, 100));
@@ -56,6 +55,62 @@ void ofApp::setup(){
         r_euler_z_history.addValue(output.z);
         ofxSendOsc("127.0.0.1", kSendPort, "/right/euler",output);
     });
+    
+    left.getAccelerationSignal().connect([&](glm::vec3& acc){
+        glm::vec3 output = glm::vec3{ l_sma_acc_x.getOutput(acc.x),
+                                      l_sma_acc_y.getOutput(acc.y),
+                                      l_sma_acc_z.getOutput(acc.z) };
+        l_acc_x_history.addValue(output.x);
+        l_acc_y_history.addValue(output.y);
+        l_acc_z_history.addValue(output.z);
+        ofxSendOsc("127.0.0.1", kSendPort, "/left/acc",output);
+    });
+    
+    right.getAccelerationSignal().connect([&](glm::vec3& acc){
+        glm::vec3 output = glm::vec3{ r_sma_acc_x.getOutput(acc.x),
+                                      r_sma_acc_y.getOutput(acc.y),
+                                      r_sma_acc_z.getOutput(acc.z) };
+        r_acc_x_history.addValue(output.x);
+        r_acc_y_history.addValue(output.y);
+        r_acc_z_history.addValue(output.z);
+        ofxSendOsc("127.0.0.1", kSendPort, "/right/acc",output);
+    });
+    
+    left.getGyroSignal().connect([&](glm::vec3& gyro){
+        glm::vec3 output = glm::vec3{ l_sma_gyro_x.getOutput(gyro.x),
+                                      l_sma_gyro_y.getOutput(gyro.y),
+                                      l_sma_gyro_z.getOutput(gyro.z) };
+        l_gyro_x_history.addValue(output.x);
+        l_gyro_y_history.addValue(output.y);
+        l_gyro_z_history.addValue(output.z);
+        ofxSendOsc("127.0.0.1", kSendPort, "/left/acc",output);
+    });
+    
+    
+    right.getGyroSignal().connect([&](glm::vec3& gyro){
+        glm::vec3 output = glm::vec3{ r_sma_gyro_x.getOutput(gyro.x),
+                                      r_sma_gyro_y.getOutput(gyro.y),
+                                      r_sma_gyro_z.getOutput(gyro.z) };
+        r_gyro_x_history.addValue(output.x);
+        r_gyro_y_history.addValue(output.y);
+        r_gyro_z_history.addValue(output.z);
+        ofxSendOsc("127.0.0.1", kSendPort, "/right/acc",output);
+    });
+    
+    
+    
+    left.getMagnitudeSignal().connect([&](float& mag){
+        float output = l_mag.getOutput(mag);
+        l_mag_history.addValue(output);
+        ofxSendOsc("127.0.0.1", kSendPort, "/left/mag", output);
+    });
+    
+    right.getMagnitudeSignal().connect([&](float& mag){
+        float output = r_mag.getOutput(mag);
+        r_mag_history.addValue(output);
+        ofxSendOsc("127.0.0.1", kSendPort, "/right/mag", output);
+    });
+    
 
 }
 
