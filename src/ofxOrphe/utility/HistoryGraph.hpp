@@ -33,6 +33,8 @@ public:
         buffer_.pop_front();
     }
     
+    T   getValue() const { return buffer_.back(); }
+    
     void setDrawingArea(const ofRectangle& area) { area_ = area; }
     void draw() const {
         ofPushStyle();

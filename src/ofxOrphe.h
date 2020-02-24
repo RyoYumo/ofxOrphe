@@ -6,7 +6,7 @@
 #include "ofxOrphe/OrpheTrack.hpp"
 #include "ofxOrphe/utility/MovingAverage.hpp"
 #include "ofxOrphe/utility/HistoryGraph.hpp"
-
+#include "ofxOrphe/utility/TriggerGraph.hpp"
 
 namespace ofxOrphe = ofx::orphe;
 
