@@ -14,6 +14,7 @@
 
 namespace ofx {
 namespace orphe {
+
 template<typename T, std::size_t N>
 class SimpleMovingAverage {
 public:
@@ -31,6 +32,34 @@ private:
     T sum_;
 };
 
+template<typename T, std::size_t N>
+class WeightedMovingAverage {
+public:
+    using value_type = T;
+    static constexpr auto size = N;
+    WeightedMovingAverage() : data_(size), weight_(), sum_(), denominator_(){
+        for(auto i =0; i < size; ++i){
+            weight_.push_back(size - i);
+            denominator_ += (size - i);
+        }
+    }
+    const T operator()(const T& input){
+        data_.push_back(input);
+        data_.pop_front();
+        sum_ = 0;
+        
+        for(auto i = 0; i < size; ++i){
+            sum_ += weight_.at(i) * data_.at(i);
+        }
+        
+        return sum_ / denominator_;
+    }
+private:
+    std::deque<T> data_;
+    std::vector<T> weight_;
+    T sum_;
+    int denominator_;
+};
 
 } // namespace orphe
 } // namespace ofx
