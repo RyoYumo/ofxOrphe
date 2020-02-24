@@ -77,7 +77,7 @@ void OrpheTrackOscReceiver::subscribe(const int port){
         right_->setVelocity(glm::vec3(m.getArgAsFloat(5), m.getArgAsFloat(6), m.getArgAsFloat(7)));
         right_->setDisplacement(glm::vec3(m.getArgAsFloat(8), m.getArgAsFloat(9), m.getArgAsFloat(10)));
         right_->setDeltaDisplacement(glm::vec3(m.getArgAsFloat(11), m.getArgAsFloat(12), m.getArgAsFloat(13)));
-        right_->setState(14);
+        right_->setState(m.getArgAsFloat(14));
         right_->setCyclePeriod(m.getArgAsInt(15));
         right_->setDetailedCyclePeriod(m.getArgAsInt(16));
         right_->setCycleEvent(m.getArgAsInt(17));
