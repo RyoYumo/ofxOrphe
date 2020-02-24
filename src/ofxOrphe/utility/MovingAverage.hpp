@@ -46,7 +46,7 @@ public:
     const T getOutput(const T& input){
         data_.push_back(input);
         data_.pop_front();
-        sum_ = 0;
+        sum_ = T{};
         
         for(auto i = 0; i < size; ++i){
             sum_ += weight_.at(i) * data_.at(i);
