@@ -16,6 +16,4 @@ private:
     ofxOrphe::TriggerGraph<100> l_stance_history;
     ofxOrphe::TriggerGraph<100> r_swing_history;
     ofxOrphe::TriggerGraph<100> r_stance_history;
-    ofxOrphe::HistoryGraph<float,50>   swing_duration_diff_hisotry;
-    ofxOrphe::HistoryGraph<float,50>   stance_duration_diff_hisotry;
 };
