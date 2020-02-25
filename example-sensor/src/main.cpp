@@ -5,7 +5,7 @@
 int main( ){
     ofGLFWWindowSettings settings;
     settings.resizable = false;
-    settings.setSize(800, 600);
+    settings.setSize(1550, 1000);
     
     ofCreateWindow(settings);
     ofRunApp(std::make_shared<ofApp>());
