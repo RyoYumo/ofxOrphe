@@ -61,6 +61,11 @@ void OrpheTrackOscReceiver::subscribe(const int port){
         left_->setPronation(m.getArgAsFloat(1));
     });
     
+    ofxSubscribeOsc(port, "/LEFT/gaitAnalysis/strikeAngle", [&](ofxOscMessage& m){
+        if(!left_) return;
+        left_->setStrikeAngle(m.getArgAsFloat(1));
+    });
+    
     // sensor values
     ofxSubscribeOsc(port, "/LEFT/sensorValues", [&](ofxOscMessage& m){
         if(!left_) return;
@@ -107,6 +112,12 @@ void OrpheTrackOscReceiver::subscribe(const int port){
         if(!right_) return;
         right_->setPronation(m.getArgAsFloat(1));
     });
+    
+    ofxSubscribeOsc(port, "/RIGHT/gaitAnalysis/strikeAngle", [&](ofxOscMessage& m){
+        if(!right_) return;
+        right_->setStrikeAngle(m.getArgAsFloat(1));
+    });
+    
     
     // sensor values
     ofxSubscribeOsc(port, "/RIGHT/sensorValues", [&](ofxOscMessage& m){

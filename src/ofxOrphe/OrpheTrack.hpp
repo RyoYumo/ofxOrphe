@@ -41,6 +41,7 @@ public:
     void setCyclePeriod(int period);
     void setDetailedCyclePeriod(int period);
     void setCycleEvent(int event);
+    void setStrikeAngle(float deg);
     
     //! getter
     const glm::quat&   getOrientationQuat() const { return gait_.orientation; }
@@ -52,6 +53,7 @@ public:
     const float        getSpeed() const { return gait_.speed;}
     const float        getPronation() const { return gait_.pronation;}
     const float        getStrideDistance() const { return gait_.stride_distance;}
+    const float        getStrikeAngle() const { return gait_.strike_angle; }
     const int          getState() const { return detail::toUType(gait_.state);}
     const int          getCyclePeriod() const { return detail::toUType(gait_.cycle_period);}
     const int          getDetailedCyclePeriod() const { return detail::toUType(gait_.detailed_cycle_period); }
@@ -66,6 +68,7 @@ public:
     Signal<float>&     getStrideDistanceSignal() { return stride_distance_sig_; }
     Signal<float>&     getStanceDurationSignal() { return stance_duration_sig_; }
     Signal<float>&     getSwingDurationSignal() { return swing_duration_sig_;}
+    Signal<float>&     getStrikeAngleSignal() { return strike_angle_sig_;}
     Signal<void>&      getStopSignal() { return stop_sig_; }
     Signal<void>&      getWalkSignal() { return walk_sig_; }
     Signal<void>&      getRunSignal() { return  run_sig_; }
@@ -116,6 +119,7 @@ private:
         glm::vec3 velocity;
         glm::vec3 displacement;
         glm::vec3 delta_displacement;
+        float strike_angle;
         float swing_duration;
         float stance_duration;
         float speed;     // km/h
@@ -141,6 +145,7 @@ private:
     Signal<glm::vec3> displacement_sig_;
     Signal<glm::vec3> delta_displacement_sig_;
     Signal<float>     stance_duration_sig_;
+    Signal<float>     strike_angle_sig_;
     Signal<float>     swing_duration_sig_;
     Signal<float>     speed_sig_;
     Signal<float>     pronation_sig_;

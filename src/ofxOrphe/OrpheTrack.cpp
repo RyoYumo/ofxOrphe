@@ -53,6 +53,11 @@ void OrpheTrack::setStanceDuration(float duration){
     stance_duration_sig_.emit(gait_.stance_duration);
 }
 
+void OrpheTrack::setStrikeAngle(float deg){
+    gait_.strike_angle = deg;
+    strike_angle_sig_.emit(gait_.strike_angle);
+}
+
 
 void OrpheTrack::setOrientation(const glm::vec3& euler){
     sensor_.orientation = euler;
