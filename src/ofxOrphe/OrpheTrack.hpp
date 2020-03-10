@@ -25,24 +25,8 @@ toUType(E enumerator){
 } // namespace detail
 
 class OrpheTrack {
+    friend class OrpheTrackOscReceiver;
 public:
-    //! Gait Analysis
-    //! setter
-    void setVelocity(const glm::vec3& velocity);
-    void setOrientation(const glm::quat& quat);
-    void setDisplacement(const glm::vec3& displacement);
-    void setDeltaDisplacement(const glm::vec3& delta_displacement);
-    void setSwingDuration(float duration);
-    void setStanceDuration(float duration);
-    void setSpeed(float speed);
-    void setPronation(float deg);
-    void setStrideDistance(float dist);
-    void setState(int state);
-    void setCyclePeriod(int period);
-    void setDetailedCyclePeriod(int period);
-    void setCycleEvent(int event);
-    void setStrikeAngle(float deg);
-    
     //! getter
     const glm::quat&   getOrientationQuat() const { return gait_.orientation; }
     const glm::vec3&   getVelocity() const { return gait_.velocity; }
@@ -90,13 +74,6 @@ public:
     Signal<void>&      getCycleEventFeetAdjacentSignal() { return cycle_event_feet_adjacent_sig_;}
     Signal<void>&      getCycleEventTibiaVerticalSignal() { return cycle_event_tibia_vertical_sig_;}
     
-    
-    //! Sensor
-    //! setter
-    void setOrientation(const glm::vec3& euler);
-    void setAcceleration(const glm::vec3& acc);
-    void setGyro(const glm::vec3& gyro);
-    void setMagnitude(float mag);
     
     //! getter
     const glm::vec3& getOrientationEuler() const { return sensor_.orientation; }
@@ -184,6 +161,26 @@ private:
     Signal<glm::vec3> acceleration_sig_;
     Signal<glm::vec3> gyro_sig_;
     Signal<float>     magnitude_sig_;
+    
+ 
+    void setVelocity(const glm::vec3& velocity);
+    void setOrientation(const glm::quat& quat);
+    void setDisplacement(const glm::vec3& displacement);
+    void setDeltaDisplacement(const glm::vec3& delta_displacement);
+    void setSwingDuration(float duration);
+    void setStanceDuration(float duration);
+    void setSpeed(float speed);
+    void setPronation(float deg);
+    void setStrideDistance(float dist);
+    void setState(int state);
+    void setCyclePeriod(int period);
+    void setDetailedCyclePeriod(int period);
+    void setCycleEvent(int event);
+    void setStrikeAngle(float deg);
+    void setOrientation(const glm::vec3& euler);
+    void setAcceleration(const glm::vec3& acc);
+    void setGyro(const glm::vec3& gyro);
+    void setMagnitude(float mag);
 
 };
 
